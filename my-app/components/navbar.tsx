@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Menu, Rocket, X } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,21 +47,7 @@ export function Navbar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="relative">
-              <Rocket className="h-7 w-7 text-[#e94e1b]" />
-              <motion.div
-                className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-[#e94e1b]"
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [1, 0.5, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Number.POSITIVE_INFINITY,
-                }}
-              />
-            </div>
-            <span className="text-xl font-bold text-black">MARZ SOFTWARE</span>
+            <Image src="./Marz_Mesa.svg" alt="" width={110} height={110} />
           </motion.button>
 
           {/* Desktop Navigation */}

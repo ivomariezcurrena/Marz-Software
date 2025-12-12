@@ -1,6 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import React from "react";
 
 const stats = [
   { number: 50, suffix: "+", label: "Proyectos Completados" },
@@ -44,7 +45,7 @@ function Counter({
 
   return (
     <div ref={ref} className="text-6xl font-bold md:text-7xl">
-      {count}
+      <span className="text-white">{count}</span>
       <span className="bg-gradient-to-r from-[#e94e1b] to-[#ff7849] bg-clip-text text-transparent">
         {suffix}
       </span>
@@ -53,26 +54,43 @@ function Counter({
 }
 
 export function StatsSection() {
+  // Generar posiciones y animaciones deterministas para las estrellas
+  const stars = React.useMemo(() => {
+    function seededRandom(seed: number) {
+      let x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    }
+    // Redondear a 4 decimales para evitar diferencias de precisión entre SSR y cliente
+    const round = (num: number) => Math.round(num * 10000) / 10000;
+    return Array.from({ length: 30 }, (_, i) => {
+      const left = round(seededRandom(i + 1) * 100);
+      const top = round(seededRandom(i + 31) * 100);
+      const duration = round(3 + seededRandom(i + 61) * 2);
+      const delay = round(seededRandom(i + 91) * 2);
+      return { left, top, duration, delay };
+    });
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-black to-black/95 py-32">
       {/* Animated background */}
       <div className="absolute inset-0">
-        {[...Array(30)].map((_, i) => (
+        {stars.map((star, i) => (
           <motion.div
             key={i}
             className="absolute h-1 w-1 rounded-full bg-white"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${star.left}%`,
+              top: `${star.top}%`,
             }}
             animate={{
               opacity: [0.1, 0.5, 0.1],
               scale: [1, 1.5, 1],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: star.duration,
               repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
+              delay: star.delay,
             }}
           />
         ))}

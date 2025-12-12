@@ -53,8 +53,12 @@ export function TestimonialsSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                y: { duration: 0.15, ease: "easeOut" },
+              }}
+              whileHover={{ y: -4 }}
               className="group"
             >
               <div className="relative h-full overflow-hidden rounded-2xl border border-black/10 bg-gradient-to-br from-white to-gray-50 p-8 shadow-lg transition-all duration-300 hover:shadow-2xl">

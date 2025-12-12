@@ -22,7 +22,7 @@ const steps = [
     icon: Zap,
     title: "Desarrollo Iterativo",
     description:
-      "Construimos tu software en sprints cortos, mostrando avances constantes y ajustando según tu feedback continuo.",
+      "Construimos tu software mostrandore avances semanales constantes y ajustando según tu feedback continuo.",
     gradient: "from-[#ffb849] to-[#ff9849]",
   },
   {

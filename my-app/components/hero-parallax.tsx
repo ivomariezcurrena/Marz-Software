@@ -2,6 +2,9 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
+import React from "react";
+import { Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export function HeroParallax() {
   const ref = useRef<HTMLDivElement>(null);
@@ -13,26 +16,44 @@ export function HeroParallax() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
+  // Generar posiciones y animaciones deterministas para las estrellas
+  const stars = React.useMemo(() => {
+    // Usar una semilla simple para que sea igual en SSR y CSR
+    function seededRandom(seed: number) {
+      let x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    }
+    // Redondear a 4 decimales para evitar diferencias de precisión entre SSR y cliente
+    const round = (num: number) => Math.round(num * 10000) / 10000;
+    return Array.from({ length: 50 }, (_, i) => {
+      const left = round(seededRandom(i + 1) * 100);
+      const top = round(seededRandom(i + 51) * 100);
+      const duration = round(3 + seededRandom(i + 101) * 2);
+      const delay = round(seededRandom(i + 151) * 2);
+      return { left, top, duration, delay };
+    });
+  }, []);
+
   return (
     <div ref={ref} className="relative h-screen overflow-hidden bg-white">
       {/* Animated background stars */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(50)].map((_, i) => (
+        {stars.map((star, i) => (
           <motion.div
             key={i}
             className="absolute h-1 w-1 rounded-full bg-black/20"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${star.left}%`,
+              top: `${star.top}%`,
             }}
             animate={{
               opacity: [0.2, 1, 0.2],
               scale: [1, 1.5, 1],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: star.duration,
               repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
+              delay: star.delay,
             }}
           />
         ))}
@@ -45,19 +66,22 @@ export function HeroParallax() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-6 inline-block rounded-full bg-gradient-to-r from-[#e94e1b] to-[#ff7849] px-6 py-2 text-sm font-semibold text-white shadow-lg"
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary mb-8 border border-border"
         >
-          El buen software está en Marte
+          <Sparkles className="w-4 h-4 text-accent" />
+          <span className="text-sm font-medium text-foreground">
+            El mejor software está en marte
+          </span>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6 max-w-5xl bg-gradient-to-b from-black to-black/70 bg-clip-text text-6xl font-bold leading-tight text-transparent md:text-8xl"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-6xl md:text-8xl font-bold text-foreground mb-6 text-balance leading-tight"
         >
-          Marz Software
+          MARZ SOFTWARE
         </motion.h1>
 
         <motion.p
