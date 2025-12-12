@@ -56,8 +56,14 @@ const services = [
 
 export function ServicesGrid() {
   return (
-    <section id="servicios" className="relative overflow-hidden bg-white py-32">
-      <div className="container mx-auto px-4">
+    <section
+      id="servicios"
+      className="relative overflow-visible bg-[#e14624] pt-56 pb-32 rounded-b-[50px]"
+    >
+      {/* Gradiente concentrado arriba */}
+      <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[#842b20] via-[#972e1f] via-[#ad2e1e] via-[#c5301b] via-[#ca4929] to-transparent" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,10 +71,10 @@ export function ServicesGrid() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <h2 className="mb-4 text-5xl font-bold text-black md:text-6xl">
+          <h2 className="mb-4 text-5xl font-bold text-white md:text-6xl">
             Nuestros Servicios
           </h2>
-          <p className="mx-auto max-w-2xl text-xl text-black/70">
+          <p className="mx-auto max-w-2xl text-xl text-white/80">
             Soluciones completas de software para impulsar tu negocio al
             siguiente nivel
           </p>
@@ -89,7 +95,7 @@ export function ServicesGrid() {
               whileHover={{ y: -4 }}
               className="group relative"
             >
-              <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-2xl">
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/10 p-8 shadow-lg transition-all duration-300 hover:shadow-2xl">
                 {/* Gradient background on hover */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
@@ -104,10 +110,10 @@ export function ServicesGrid() {
                   </div>
                 </div>
 
-                <h3 className="relative mb-3 text-2xl font-bold text-black">
+                <h3 className="relative mb-3 text-2xl font-bold text-white">
                   {service.title}
                 </h3>
-                <p className="relative text-black/70">{service.description}</p>
+                <p className="relative text-white/80">{service.description}</p>
 
                 {/* Decorative corner */}
                 <div

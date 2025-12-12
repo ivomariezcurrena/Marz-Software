@@ -36,7 +36,6 @@ export function HeroParallax() {
 
   return (
     <div ref={ref} className="relative h-screen overflow-hidden bg-white">
-      {/* Animated background stars */}
       <div className="absolute inset-0 overflow-hidden">
         {stars.map((star, i) => (
           <motion.div
@@ -155,6 +154,16 @@ export function HeroParallax() {
           />
         </div>
       </motion.div>
+      {/* Background Mars SVG */}
+      <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 z-20 ">
+        <Image
+          src="/marte.svg"
+          alt="Mars background"
+          width={900}
+          height={900}
+          className="object-contain"
+        />
+      </div>
     </div>
   );
 }
