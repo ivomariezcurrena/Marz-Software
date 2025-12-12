@@ -4,10 +4,10 @@ import { useRef, useEffect, useState } from "react";
 import React from "react";
 
 const stats = [
-  { number: 50, suffix: "+", label: "Proyectos Completados" },
+  { number: 30, suffix: "+", label: "Proyectos Completados" },
   { number: 100, suffix: "%", label: "Satisfacción del Cliente" },
   { number: 24, suffix: "/7", label: "Soporte Disponible" },
-  { number: 5, suffix: " años", label: "De Experiencia" },
+  { number: 3, suffix: " años", label: "De Experiencia" },
 ];
 
 function Counter({

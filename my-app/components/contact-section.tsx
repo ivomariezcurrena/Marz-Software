@@ -19,15 +19,54 @@ export function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const formData = new FormData(e.currentTarget);
+    const nombre = formData.get("nombre");
+    const email = formData.get("email");
+    const empresa = formData.get("empresa");
+    const mensaje = formData.get("mensaje");
 
-    toast({
-      title: "¡Mensaje enviado!",
-      description: "Nos pondremos en contacto contigo pronto.",
-    });
+    const subject = `Nuevo contacto web de ${nombre}`;
+    const body = `Nombre: ${nombre}\nEmail: ${email}\nEmpresa: ${empresa}\n\nMensaje:\n${mensaje}`;
 
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, email, empresa, mensaje }),
+      });
+
+      if (!res.ok) {
+        let details = "";
+        try {
+          const json = await res.json();
+          details = json?.details || json?.error || "";
+        } catch (e) {
+          details = await res.text().catch(() => "");
+        }
+        throw new Error(
+          details ? `Error servidor: ${details}` : "Error enviando el mensaje"
+        );
+      }
+
+      toast({
+        title: "¡Mensaje enviado!",
+        description: "Nos pondremos en contacto contigo pronto.",
+      });
+    } catch (err: any) {
+      // Fallback: abrir cliente de correo si el envío por servidor falla
+      const encodedSubject = encodeURIComponent(subject);
+      const encodedBody = encodeURIComponent(body);
+      window.location.href = `mailto:marzsoftware@outlook.com?subject=${encodedSubject}&body=${encodedBody}`;
+
+      toast({
+        title: "Error al enviar",
+        description:
+          err?.message || "Se abrió tu cliente de correo como alternativa.",
+      });
+    } finally {
+      setIsSubmitting(false);
+      (e.target as HTMLFormElement).reset();
+    }
   };
 
   return (
@@ -99,7 +138,7 @@ export function ContactSection() {
                     href="mailto:contacto@marzsoftware.com"
                     className="text-black/70 transition-colors hover:text-[#e94e1b]"
                   >
-                    contacto@marzsoftware.com
+                    marzsoftware@outlook.com
                   </a>
                 </div>
               </motion.div>
@@ -117,7 +156,7 @@ export function ContactSection() {
                     href="tel:+1234567890"
                     className="text-black/70 transition-colors hover:text-[#e94e1b]"
                   >
-                    +1 (234) 567-890
+                    2804198174
                   </a>
                 </div>
               </motion.div>
@@ -131,7 +170,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="mb-1 font-semibold text-black">Ubicación</p>
-                  <p className="text-black/70">Ciudad, País</p>
+                  <p className="text-black/70">Puerto Madryn, Chubut</p>
                 </div>
               </motion.div>
             </div>
@@ -155,7 +194,7 @@ export function ContactSection() {
                     name="nombre"
                     required
                     placeholder="Tu nombre"
-                    className="border-2 focus:border-[#e94e1b]"
+                    className="border border-gray-200 transition-all duration-300 focus-visible:border-transparent focus-visible:!ring-0 focus-visible:shadow-[0_0_0_1px_rgba(233,78,27,0.10),0_0_25px_rgba(233,78,27,0.4)]"
                   />
                 </div>
                 <div className="space-y-2">
@@ -168,7 +207,7 @@ export function ContactSection() {
                     type="email"
                     required
                     placeholder="tu@email.com"
-                    className="border-2 focus:border-[#e94e1b]"
+                    className="border border-gray-200 transition-all duration-300 focus-visible:border-transparent focus-visible:!ring-0 focus-visible:shadow-[0_0_0_1px_rgba(233,78,27,0.10),0_0_25px_rgba(233,78,27,0.4)]"
                   />
                 </div>
               </div>
@@ -181,7 +220,7 @@ export function ContactSection() {
                   id="empresa"
                   name="empresa"
                   placeholder="Nombre de tu empresa"
-                  className="border-2 focus:border-[#e94e1b]"
+                  className="border border-gray-200 transition-all duration-300 focus-visible:border-transparent focus-visible:!ring-0 focus-visible:shadow-[0_0_0_1px_rgba(233,78,27,0.10),0_0_25px_rgba(233,78,27,0.4)]"
                 />
               </div>
 
@@ -195,7 +234,7 @@ export function ContactSection() {
                   required
                   placeholder="Cuéntanos sobre tu proyecto..."
                   rows={6}
-                  className="resize-none border-2 focus:border-[#e94e1b]"
+                  className="border border-gray-200 transition-all duration-300 focus-visible:border-transparent focus-visible:!ring-0 focus-visible:shadow-[0_0_0_1px_rgba(233,78,27,0.10),0_0_25px_rgba(233,78,27,0.4)]"
                 />
               </div>
 

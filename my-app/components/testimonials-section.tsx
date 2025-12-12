@@ -4,24 +4,24 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "María González",
-    role: "CEO, TechStart",
+    name: "Roberto Fernández",
+    role: "Dueño, Talleres El Eje",
     content:
-      "Marz Software transformó completamente nuestra operación. El sistema de gestión que desarrollaron es intuitivo y nos ha ahorrado horas de trabajo manual cada día.",
+      "La verdad, nos ordenaron la vida. Teníamos un lío bárbaro controlando los repuestos entre las sucursales, pero el sistema que nos armaron los chicos de Marz es un caño. Ahora sé exactamente qué tengo en cada taller sin volverme loco con planillas.",
     rating: 5,
   },
   {
-    name: "Carlos Ramírez",
-    role: "Director, Logística Express",
+    name: "Sofía Herrera",
+    role: "Fundadora, Mundo Móvil",
     content:
-      "La comunicación constante y la atención al detalle de Marz Software superó todas nuestras expectativas. Realmente entienden lo que significa construir software de calidad.",
+      "La página quedó increíble, vuela. Los clientes ahora compran los equipos directo por la web sin dar tantas vueltas y nos entran los pedidos solos. La atención de Marz fue de diez, siempre predispuestos a dar una mano con los cambios que pedimos.",
     rating: 5,
   },
   {
-    name: "Ana Martínez",
-    role: "Fundadora, CreativoLab",
+    name: "Diego Torres",
+    role: "Director, Academia Futuro",
     content:
-      "Nuestra página web y aplicación móvil son impecables. El equipo de Marz Software no solo cumplió con nuestras expectativas, las superó ampliamente.",
+      "Fue un antes y un después para la academia. Antes perdía mucho tiempo cobrando manual, ahora el sistema hace todo solo: la gente paga y accede al curso al toque. Me solucionaron la parte técnica para que yo me dedique a enseñar. Recomendadísimos.",
     rating: 5,
   },
 ];
