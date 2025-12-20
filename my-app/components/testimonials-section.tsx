@@ -4,24 +4,24 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
+    name: "Matías Roldán",
+    role: "Dueño, Roldán Celulares",
+    content:
+      "Arrancamos con la idea de vender por Instagram y era un caos manejar consultas, precios y stock. Con la web que nos hicieron ahora está todo ordenado: los clientes ven los equipos, consultan y compran sin vueltas. Se nota que entienden el rubro y eso marca la diferencia.",
+    rating: 5,
+  },
+  {
     name: "Roberto Fernández",
     role: "Dueño, Talleres El Eje",
     content:
-      "La verdad, nos ordenaron la vida. Teníamos un lío bárbaro controlando los repuestos entre las sucursales, pero el sistema que nos armaron los chicos de Marz es un caño. Ahora sé exactamente qué tengo en cada taller sin volverme loco con planillas.",
+      "La verdad, nos ordenaron la vida. Teníamos un lío bárbaro controlando los repuestos entre los talleres y siempre faltaba algo. El sistema que nos armaron es simple y funciona, ahora sé exactamente qué tengo y qué tengo que pedir. Dejé las planillas de lado, por suerte.",
     rating: 5,
   },
   {
-    name: "Sofía Herrera",
-    role: "Fundadora, Mundo Móvil",
+    name: "Laura Méndez",
+    role: "Socia Gerente, Inmobiliaria Sur",
     content:
-      "La página quedó increíble, vuela. Los clientes ahora compran los equipos directo por la web sin dar tantas vueltas y nos entran los pedidos solos. La atención de Marz fue de diez, siempre predispuestos a dar una mano con los cambios que pedimos.",
-    rating: 5,
-  },
-  {
-    name: "Diego Torres",
-    role: "Director, Academia Futuro",
-    content:
-      "Fue un antes y un después para la academia. Antes perdía mucho tiempo cobrando manual, ahora el sistema hace todo solo: la gente paga y accede al curso al toque. Me solucionaron la parte técnica para que yo me dedique a enseñar. Recomendadísimos.",
+      "Antes era todo WhatsApp, llamadas y notas sueltas. Ahora tenemos las propiedades, los clientes y las consultas en un solo lugar. Nos ahorra un montón de tiempo y nos ayuda a responder más rápido. El equipo entendió perfecto cómo trabajamos y lo llevó a un sistema práctico.",
     rating: 5,
   },
 ];
